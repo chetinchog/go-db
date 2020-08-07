@@ -15,4 +15,5 @@ func main() {
 	// getList()
 	// getProduct()
 	// updateProduct()
+	deleteProduct()
 }

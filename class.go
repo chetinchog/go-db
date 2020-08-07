@@ -97,3 +97,12 @@ func updateProduct() {
 		log.Fatalf("product.Update: %v", err)
 	}
 }
+
+func deleteProduct() {
+	storageProduct := storage.NewPsqlProduct(storage.Pool())
+	serviceProduct := product.NewService(storageProduct)
+
+	if err := serviceProduct.Delete(1); err != nil {
+		log.Fatalf("product.Delete: %v", err)
+	}
+}

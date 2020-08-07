@@ -149,3 +149,28 @@ func (p *PsqlProduct) Update(m *product.Model) error {
 	fmt.Println("Product update Succeeded!")
 	return nil
 }
+
+// Delete implements interface product.Storage
+func (p *PsqlProduct) Delete(id uint) error {
+	stmt, err := p.db.Prepare(psqlDeleteProduct)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	res, err := stmt.Exec(id)
+	if err != nil {
+		return err
+	}
+
+	rowsAffected, err := res.RowsAffected()
+	if err != nil {
+		return err
+	}
+	if rowsAffected != 1 {
+		return fmt.Errorf("Doesn't exists product with ID: %v", id)
+	}
+
+	fmt.Println("Product delete Succeeded!")
+	return nil
+}
