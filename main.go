@@ -8,13 +8,23 @@ import (
 
 func main() {
 	fmt.Println("Go DB")
-	storage.NewPostgresDB()
+	// storage.NewPostgresDB()
 
-	// migrate()
+	// // Postgres
+	// migratePSQL()
 	// createProduct()
 	// getList()
 	// getProduct()
 	// updateProduct()
 	// deleteProduct()
-	createInvoice()
+	// createInvoice()
+
+	// MySQL
+	storage.NewMySQLDB()
+	// migrateMySQL()
+	// createMySQLProduct()
+	// getMySQLList()
+	// getMySQLProduct()
+	// updateMySQLProduct()
+	deleteMySQLProduct()
 }

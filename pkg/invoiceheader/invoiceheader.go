@@ -1,7 +1,6 @@
 package invoiceheader
 
 import (
-	"database/sql"
 	"time"
 )
 
@@ -19,7 +18,7 @@ type Models []*Model
 // Storage interface that must implement a db storage
 type Storage interface {
 	Migrate() error
-	CreateTx(*sql.Tx, *Model) error
+	// CreateTx(*sql.Tx, *Model) error
 }
 
 // Service of invoiceheader
@@ -36,3 +35,8 @@ func NewService(s Storage) *Service {
 func (s *Service) Migrate() error {
 	return s.storage.Migrate()
 }
+
+// // CreateTx is used to create invoiceheader
+// func (s *Service) CreateTx(tx *sql.Tx, ms Models) error {
+// 	return s.storage.CreateTx(tx, ms)
+// }
