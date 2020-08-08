@@ -15,5 +15,6 @@ func main() {
 	// getList()
 	// getProduct()
 	// updateProduct()
-	deleteProduct()
+	// deleteProduct()
+	createInvoice()
 }

@@ -1,11 +1,14 @@
 package invoiceheader
 
-import "time"
+import (
+	"database/sql"
+	"time"
+)
 
 // Model of invoiceheader
 type Model struct {
 	ID        uint
-	Client    uint
+	Client    string
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
@@ -16,6 +19,7 @@ type Models []*Model
 // Storage interface that must implement a db storage
 type Storage interface {
 	Migrate() error
+	CreateTx(*sql.Tx, *Model) error
 }
 
 // Service of invoiceheader
