@@ -18,4 +18,5 @@ const (
 		created_at TIMESTAMP NOT NULL DEFAULT now(),
 		updated_at TIMESTAMP
 	)`
+	mySQLCreateInvoiceHeader = `INSERT INTO invoice_headers(client) VALUES(?)`
 )

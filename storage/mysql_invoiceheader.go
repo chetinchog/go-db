@@ -3,6 +3,8 @@ package storage
 import (
 	"database/sql"
 	"fmt"
+
+	"github.com/chetinchog/go-db/pkg/invoiceheader"
 )
 
 // MySQLInvoiceHeader used to work with MySQL - invoiceheader
@@ -27,5 +29,25 @@ func (p *MySQLInvoiceHeader) Migrate() error {
 		return err
 	}
 	fmt.Println("InvoiceHeader migration Succeeded!")
+	return nil
+}
+
+// CreateTx implements interface invoiceheader.Storage
+func (p *MySQLInvoiceHeader) CreateTx(tx *sql.Tx, m *invoiceheader.Model) error {
+	stmt, err := tx.Prepare(mySQLCreateInvoiceHeader)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	result, err := stmt.Exec(m.Client)
+	if err != nil {
+		return err
+	}
+	id, err := result.LastInsertId()
+	if err != nil {
+		return err
+	}
+	m.ID = uint(id)
 	return nil
 }

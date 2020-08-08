@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/chetinchog/go-db/pkg/invoice"
 	"github.com/chetinchog/go-db/pkg/invoiceheader"
 	"github.com/chetinchog/go-db/pkg/invoiceitem"
 	"github.com/chetinchog/go-db/pkg/product"
@@ -219,5 +220,23 @@ func deleteMySQLProduct() {
 
 	if err := serviceProduct.Delete(3); err != nil {
 		log.Fatalf("product.Delete: %v", err)
+	}
+}
+
+func createMySQLInvoice() {
+	storage.NewPostgresDB()
+	storageHeader := storage.NewMySQLInvoiceHeader(storage.Pool())
+	storageItems := storage.NewMySQLInvoiceItem(storage.Pool())
+	storageInvoice := storage.NewMySQLInvoice(storage.Pool(), storageHeader, storageItems)
+
+	m := &invoice.Model{
+		Header: &invoiceheader.Model{Client: "Pepe"},
+		Items: invoiceitem.Models{
+			&invoiceitem.Model{ProductID: 2},
+		},
+	}
+	serviceInvoice := invoice.NewService(storageInvoice)
+	if err := serviceInvoice.Create(m); err != nil {
+		log.Fatalf("invoice.Create: %v", err)
 	}
 }

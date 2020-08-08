@@ -3,6 +3,8 @@ package storage
 import (
 	"database/sql"
 	"fmt"
+
+	"github.com/chetinchog/go-db/pkg/invoiceitem"
 )
 
 // MySQLInvoiceItem used to work with MySQL - invoiceitem
@@ -27,5 +29,28 @@ func (p *MySQLInvoiceItem) Migrate() error {
 		return err
 	}
 	fmt.Println("InvoiceItem migration Succeeded!")
+	return nil
+}
+
+// CreateTx implements interface invoiceitem.Storage
+func (p *MySQLInvoiceItem) CreateTx(tx *sql.Tx, headerID uint, ms invoiceitem.Models) error {
+	stmt, err := tx.Prepare(mySQLCreateInvoiceItem)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+
+	for _, item := range ms {
+		result, err := stmt.Exec(headerID, item.ProductID)
+		if err != nil {
+			return err
+		}
+		id, err := result.LastInsertId()
+		if err != nil {
+			return err
+		}
+		item.ID = uint(id)
+	}
+
 	return nil
 }

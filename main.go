@@ -26,5 +26,6 @@ func main() {
 	// getMySQLList()
 	// getMySQLProduct()
 	// updateMySQLProduct()
-	deleteMySQLProduct()
+	// deleteMySQLProduct()
+	createMySQLInvoice()
 }
