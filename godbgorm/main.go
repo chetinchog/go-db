@@ -1,19 +1,32 @@
 package main
 
 import (
+	"github.com/chetinchog/go-db/godbgorm/model"
 	"github.com/chetinchog/go-db/godbgorm/storage"
 )
 
 func main() {
-	driver := storage.Postgres
+	driver := storage.MySQL
 	storage.New(driver)
 
-	// // Migration
-	// storage.DB().AutoMigrate(
-	// 	&model.Product{},
-	// 	&model.InvoiceHeader{},
-	// 	&model.InvoiceItem{},
-	// )
+	// Migration
+	storage.DB().AutoMigrate(
+		&model.Product{},
+		&model.InvoiceHeader{},
+		&model.InvoiceItem{},
+	)
+	storage.DB().Model(&model.InvoiceItem{}).AddForeignKey(
+		"product_id",
+		"products(id)",
+		"RESTRICT",
+		"RESTRICT",
+	)
+	storage.DB().Model(&model.InvoiceItem{}).AddForeignKey(
+		"invoice_header_id",
+		"invoice_headers(id)",
+		"RESTRICT",
+		"RESTRICT",
+	)
 
 	// // Create
 	// product1 := model.Product{
