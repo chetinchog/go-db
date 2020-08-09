@@ -6,27 +6,27 @@ import (
 )
 
 func main() {
-	driver := storage.MySQL
+	driver := storage.Postgres
 	storage.New(driver)
 
-	// Migration
-	storage.DB().AutoMigrate(
-		&model.Product{},
-		&model.InvoiceHeader{},
-		&model.InvoiceItem{},
-	)
-	storage.DB().Model(&model.InvoiceItem{}).AddForeignKey(
-		"product_id",
-		"products(id)",
-		"RESTRICT",
-		"RESTRICT",
-	)
-	storage.DB().Model(&model.InvoiceItem{}).AddForeignKey(
-		"invoice_header_id",
-		"invoice_headers(id)",
-		"RESTRICT",
-		"RESTRICT",
-	)
+	// // Migration
+	// storage.DB().AutoMigrate(
+	// 	&model.Product{},
+	// 	&model.InvoiceHeader{},
+	// 	&model.InvoiceItem{},
+	// )
+	// storage.DB().Model(&model.InvoiceItem{}).AddForeignKey(
+	// 	"product_id",
+	// 	"products(id)",
+	// 	"RESTRICT",
+	// 	"RESTRICT",
+	// )
+	// storage.DB().Model(&model.InvoiceItem{}).AddForeignKey(
+	// 	"invoice_header_id",
+	// 	"invoice_headers(id)",
+	// 	"RESTRICT",
+	// 	"RESTRICT",
+	// )
 
 	// // Create
 	// product1 := model.Product{
@@ -75,4 +75,13 @@ func main() {
 	// product := model.Product{}
 	// product.ID = 3
 	// storage.DB().Unscoped().Delete(&product)
+
+	// Transaction
+	invoice := model.InvoiceHeader{
+		Client: "Martin Gonzalez",
+		InvoiceItems: []model.InvoiceItem{
+			{ProductID: 2},
+		},
+	}
+	storage.DB().Create(&invoice)
 }
