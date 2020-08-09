@@ -52,4 +52,14 @@ func main() {
 	// storage.DB().Model(&product).Updates(
 	// 	model.Product{Name: "Curso de CSS", Price: 120},
 	// )
+
+	// // Delete Soft
+	// product := model.Product{}
+	// product.ID = 3
+	// storage.DB().Delete(&product)
+
+	// // Delete Hard
+	// product := model.Product{}
+	// product.ID = 3
+	// storage.DB().Unscoped().Delete(&product)
 }

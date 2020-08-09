@@ -2,6 +2,8 @@ github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBK
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=
 github.com/chetinchog/go-db/godbgorm v0.0.0-20200808234554-02c661ff383f h1:N3qSakhg22Y5MObU7Qrqzn/QtZ3kFIMqvf/UqwMZMkg=
 github.com/chetinchog/go-db/godbgorm v0.0.0-20200808234554-02c661ff383f/go.mod h1:8Mnzjsc72GXSYmyQm0aWBdPkfjtKLpbNDInthcwTlEo=
+github.com/chetinchog/go-db/godbgorm v0.0.0-20200809002105-e8ae5689f9fc h1:qmxhy+OLkhgDfMIItniZv7oQnqIJfxttk6dcwjmDnpI=
+github.com/chetinchog/go-db/godbgorm v0.0.0-20200809002105-e8ae5689f9fc/go.mod h1:8Mnzjsc72GXSYmyQm0aWBdPkfjtKLpbNDInthcwTlEo=
 github.com/denisenkom/go-mssqldb v0.0.0-20191124224453-732737034ffd/go.mod h1:xbL0rPBG9cCiLr28tMa8zpbdarY27NDyej4t/EjAShU=
 github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5/go.mod h1:a2zkGnVExMxdzMo3M0Hi/3sEU+cWnZpSni0O6/Yb/P0=
 github.com/go-sql-driver/mysql v1.5.0 h1:ozyZYNQW3x3HtqT1jira07DN2PArx2v7/mN66gGcHOs=
