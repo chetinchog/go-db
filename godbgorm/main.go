@@ -1,14 +1,11 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/chetinchog/go-db/godbgorm/model"
 	"github.com/chetinchog/go-db/godbgorm/storage"
 )
 
 func main() {
-	driver := storage.MySQL
+	driver := storage.Postgres
 	storage.New(driver)
 
 	// // Migration
@@ -44,8 +41,15 @@ func main() {
 	// 	fmt.Printf("%d - %s\n", product.ID, product.Name)
 	// }
 
-	// Find One
-	product := model.Product{}
-	storage.DB().First(&product, 3)
-	fmt.Printf("%d - %s\n", product.ID, product.Name)
+	// // Find One
+	// product := model.Product{}
+	// storage.DB().First(&product, 3)
+	// fmt.Printf("%d - %s\n", product.ID, product.Name)
+
+	// // Update
+	// product := model.Product{}
+	// product.ID = 3
+	// storage.DB().Model(&product).Updates(
+	// 	model.Product{Name: "Curso de CSS", Price: 120},
+	// )
 }
